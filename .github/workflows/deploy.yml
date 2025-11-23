@@ -13,8 +13,7 @@ jobs:
               with: 
                 node-version: '20'
                 cache: 'npm'
-            - name: install ng
-              run: npm install ng-common
+            
             - name: insstall deps
               run: npm install
             - name: build angular app

@@ -3,7 +3,7 @@ on:
     push:
         branches: [main]
 jobs:
-    deploy:
+    build:
         runs-on: ubuntu-latest
         steps:
             - name: checkout code
@@ -14,12 +14,21 @@ jobs:
                 node-version: '20'
                 cache: 'npm'
             
-            - name: insstall deps
+            - name: install deps
               run: npm install
             - name: build angular app
-              run: npm run  build  
+              run: npm run build
             - name: artifact deploy
-              uses: actions/upload-artifact@v4
+              uses: actions/upload-pages-artifact@v4
               with:
+             
                 path: dist/
-            
+    deploy: 
+       runs-on: ubuntu-latest
+       needs: build
+    
+       steps: 
+        - name: deploy to github pages
+          id: deployment
+          uses: actions/deploy-pages@v4
+      

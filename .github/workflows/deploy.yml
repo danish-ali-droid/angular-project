@@ -17,5 +17,5 @@ jobs:
             - name: insstall deps
               run: npm install
             - name: build angular app
-              run: npm  build  
+              run: npm run  build  
             
